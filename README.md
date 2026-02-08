@@ -1,6 +1,8 @@
 # Interactive Brokers Gateway Docker
 
-<img src="https://github.com/gnzsnz/ib-gateway-docker/blob/master/logo.png" height="300" alt="IB Gateway Docker"/>
+[![Build](https://github.com/gnzsnz/ib-gateway-docker/actions/workflows/on-push-n-pr.yml/badge.svg?branch=master)](https://github.com/gnzsnz/ib-gateway-docker/actions) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![GitHub Discussions](https://img.shields.io/github/discussions/gnzsnz/ib-gateway-docker)](https://github.com/gnzsnz/ib-gateway-docker/discussions) [![GitHub Repo stars](https://img.shields.io/github/stars/gnzsnz/ib-gateway-docker)](#repo-stats) [![GitHub forks](https://img.shields.io/github/forks/gnzsnz/ib-gateway-docker)](https://github.com/gnzsnz/ib-gateway-docker/network/members)
+
+<img src="https://github.com/gnzsnz/ib-gateway-docker/blob/master/logo.png" height="300" class="center" alt="IB Gateway Docker"/>
 
 ## What is it?
 
@@ -37,10 +39,10 @@ Images are provided for [IB gateway][1] and [TWS][2]. With the following tags:
 
 | Image| Channel  | IB Gateway Version  | IBC Version      | Docker Tags                                    |
 | --- | -------- | ------------------- | ---------------- | ---------------------------------------------- |
-| [ib-gateway][1] | `latest` | `10.41.1c` | `3.23.0` | `latest` `10.41` `10.41.1c` |
-| [ib-gateway][1] |`stable` | `10.37.1l` | `3.23.0` | `stable` `10.37` `10.37.1l` |
-| [tws-rdesktop][2] | `latest` | `10.41.1c` | `3.23.0` | `latest` `10.41` `10.41.1c` |
-| [tws-rdesktop][2] |`stable` | `10.37.1l` | `3.23.0` | `stable` `10.37` `10.37.1l` |
+| [ib-gateway][1] | `latest` | `10.43.1c` | `3.23.0` | `latest` `10.43` `10.43.1c` |
+| [ib-gateway][1] |`stable` | `10.37.1o` | `3.23.0` | `stable` `10.37` `10.37.1o` |
+| [tws-rdesktop][2] | `latest` | `10.43.1c` | `3.23.0` | `latest` `10.43` `10.43.1c` |
+| [tws-rdesktop][2] |`stable` | `10.37.1o` | `3.23.0` | `stable` `10.37` `10.37.1o` |
 
 All tags are available in the container repository for [ib-gateway][1] and
 [tws-rdesktop][2]. IB Gateway and TWS share the same version numbers and tags.
@@ -112,7 +114,7 @@ services:
 
 ```
 
-Create an .env on root directory. Example .env file:
+Create an .env on root directory. You can use the provided [.env-dist](https://github.com/gnzsnz/ib-gateway-docker/blob/master/.env-dist) as a starting point. Example .env file:
 
 ```bash
 TWS_USERID=myTwsAccountName
@@ -164,9 +166,11 @@ Once `docker-compose.yml` and `.env` are in place you can start the container wi
 docker compose up
 ```
 
-To get a GUI can use vnc for ib-gateway or RDP for TWS.
+To get a GUI you can use vnc for ib-gateway or RDP for TWS.
 
-Looking for help? Please keep reading below, or go to [discussion](https://github.com/gnzsnz/ib-gateway-docker/discussions) section for common problems and solutions.
+Looking for help? Please keep reading below, or go to
+[discussion](https://github.com/gnzsnz/ib-gateway-docker/discussions) section for common
+problems and solutions. If you have problems please go through the [troubleshooting guide](https://github.com/gnzsnz/ib-gateway-docker/discussions/245)
 
 ## Configuration
 
@@ -186,6 +190,7 @@ All environment variables are common between ibgateway and TWS image, unless spe
 | `VNC_SERVER_PASSWORD_FILE`  | VNC server password. If not defined, then VNC server will NOT start. Specific to ibgateway, ignored by TWS. | **not defined** (VNC disabled) |
 | `TWOFA_TIMEOUT_ACTION`      | 'exit' or 'restart', set to 'restart if you set `AUTO_RESTART_TIME`. See IBC [documentation](https://github.com/IbcAlpha/IBC/blob/master/userguide.md#second-factor-authentication)  | exit  |
 | `TWOFA_DEVICE` | second factor authentication device. See IBC [documentation](https://github.com/IbcAlpha/IBC/blob/c98d0bcc2ead9b8ab3900a23a707f01f8fd7dfbc/resources/config.ini#L104) | **not defined** |
+| `TWOFA_EXIT_INTERVAL` | It controls how long (in seconds) IBC waits for login to complete after the user acknowledges the second factor authentication. See [IBC documentation](https://github.com/IbcAlpha/IBC/blob/38593af5193ccd634aa226cc66242adc8718b653/resources/config.ini#L147) | 60 seconds |
 | `BYPASS_WARNING` | Settings relate to the corresponding 'Precautions' checkboxes in the API section of the Global Configuration dialog. Accepted values `yes`, `no` if not set, the existing TWS/Gateway configuration is unchanged  | **not defined**                                      |
 | `AUTO_RESTART_TIME`  | time to restart IB Gateway, does not require daily 2FA validation. format hh:mm AM/PM. See IBC [documentation](https://github.com/IbcAlpha/IBC/blob/master/userguide.md#ibc-user-guide) | **not defined**  |
 | `AUTO_LOGOFF_TIME` | Auto-Logoff: at a specified time, TWS shuts down tidily, without restarting   | **not defined**   |
@@ -656,3 +661,9 @@ https://github.com/gnzsnz/ib-gateway-docker/raw/gh-pages/ibgateway-releases/ibga
 
 [1]: https://github.com/users/gnzsnz/packages/container/package/ib-gateway "ib-gateway"
 [2]: https://github.com/gnzsnz/ib-gateway-docker/pkgs/container/tws-rdesktop "tws-rdesktop"
+
+## Repo stats
+
+Repository stars overtime.
+
+[![Stargazers over time](https://starchart.cc/gnzsnz/ib-gateway-docker.svg?variant=adaptive)](https://starchart.cc/gnzsnz/ib-gateway-docker)
